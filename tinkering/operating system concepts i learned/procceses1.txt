@@ -1,0 +1,15 @@
+so im diving deep into how programs run on our computers and i have discovered procceses.
+every program that runs on our machine is called a procces.
+procces can have 3 modes wich are: starting, running and exit mode.
+u can guess that when our program is starting it gets all extential code and libraries that it needs.
+when its running, well then of course its code is being executed and alot of interesting stuff happens here.
+when it enters exit mode it means that our procces is ending (program ends) like exiting our browser or game and it returns special code on exit 
+like 0 (meaning everything is all right) or 1 or above that means some error happend that needs checking.
+
+each procces contain interesting stuff for example procces id(PED) and evn file that contains configuration variables and details it needs.
+our programs or procceses dont directly have acces to our hardware components. they go throu our kernel.
+each procces can create another procces called sub-procces that share that .env file with parent procces.
+with this design u can have multiple procceses with the same configuration.
+
+
+

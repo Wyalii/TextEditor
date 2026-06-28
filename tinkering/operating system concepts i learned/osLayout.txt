@@ -1,0 +1,8 @@
+so everything on linux is basically a file.
+layout of os between windows and linx is really different.
+in linux we have 1 root directory with sub directories while windows has 2 or more when we plug in usb flashes for example.
+in windows everything is grouped in same folders but in linux everything is seperated.
+for example our procces has its own executable file that is saved under the bin folder in linux and all config files will be in etc folder
+meanwhile in windows everything is in porgram files folder.
+so in linux every program file is split into different folders based on what they are basically.
+
