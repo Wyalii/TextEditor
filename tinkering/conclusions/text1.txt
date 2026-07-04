@@ -1,0 +1,15 @@
+so as it turns out in c we have library called "termios.h". this library is a struct that holds all configuration
+settings in a struct where each field is an array of 0s and 1s and each bit is its own setting.
+
+what i did today was just messing around with settings of our terminal. we get its original attributes and tinker with it.
+i just disabled ECHO's feature that causes each key to be printed.
+we have also disabled ICANON that hides our characters and we dont need that.
+
+at the end we just print all characters to terminal with their ASCII values.
+
+
+file descriptor is small interger that kernel uses to hand input/output operations.
+each procces has its own file descriptor table.
+
+i need to dedicate more time to learn about file descriptors so that i can fully understand meaning behind STDIN_FILENO or 
+TCSAFLUSH. in future i will have to use more of these.
