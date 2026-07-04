@@ -1,0 +1,18 @@
+each proccess is basically a zone or box of memory.
+proces utilizes this memory zone, for example stack and heap in procces will have its own dedicated zone in memory.
+each procces also will have its starting id in memory aswell for example at 0
+and also an ending adress something like: 0xffff
+libraries needed for this procces will also have its own dedicated memory zone.
+
+for stacks and heap for example we can have program like this:
+int main(){
+ int a = 15;
+ this is gonna be stored on stack.
+ we can also allocate this memory in heap so that it will be accesable for other functions with special function called alloc().
+ alloc is part of library called  libc.
+
+ int *p = malloc(sizeof(int)) malloc func gives adress of heap memory of size int
+ now we can set of adress p in any value: *p = 12
+ when we are done with it we must use free(p) to remove it from heap.
+
+}

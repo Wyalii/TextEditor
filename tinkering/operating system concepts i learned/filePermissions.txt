@@ -1,0 +1,13 @@
+when we use command ls -l in linux we can see details of file permissions.
+it usually looks something like this :  -rw-r--r--. 1 root root  4017 Feb 24  2022 vimrc
+where first root is user and second root is group of that file.
+here "-" represents the type of this file and rw-r-r are permissions,
+r means read, w means write and x means execute. 
+
+-rw-r--r-- here we have permissions for owner(user) of file, user and others.
+first rw is for the owner(user) of file and it means that user can read and write this file.
+second r is for groups that can only read this file.
+third is also r for others and they can also read this file.
+
+with command like chmod we can maniuplate and change permissions of files hehe.
+
