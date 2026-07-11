@@ -3,34 +3,56 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <stdio.h>
+#include <errno.h>
+
 struct termios original_termios;
+
+void die(const char *s)
+{
+    perror(s);
+    exit(1);
+}
 void disableRawMode()
 {
+    if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &original_termios) == -1)
+    {
+        die("tcssetattr");
+    }
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &original_termios);
 }
 void enableRawMode()
 {
     tcgetattr(STDIN_FILENO, &original_termios);
-    struct termios raw = original_termios;
-    raw.c_lflag &= ~(ECHO | ICANON);
-    tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
     atexit(disableRawMode);
+    struct termios raw = original_termios;
+    raw.c_iflag &= ~(BRKINT | ICRNL | INPCK | ISTRIP | IXON);
+    raw.c_oflag &= ~(OPOST);
+    raw.c_cflag |= (CS8);
+    raw.c_lflag &= ~(ECHO | ICANON | IEXTEN | ISIG);
+    raw.c_cc[VMIN] = 0;
+    raw.c_cc[VTIME] = 1;
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
 }
 int main()
 {
     enableRawMode();
-    int c;
-    // I could use STDIN_FILENO here since its same as 0.
-    while (read(0, &c, 1) == 1 && c != 'q')
+    char c = '\0';
+    read(STDERR_FILENO, &c, 1);
+
+    while (1)
     {
+        char c = '\0';
+        read(STDIN_FILENO, &c, 1);
         if (iscntrl(c))
         {
-            printf("%d\n", c);
+            printf("%d\r\n", c);
         }
         else
         {
-            printf("%d ('%c')\n", c, c);
+            printf("%d ('%c')\r\n", c, c);
         }
+        if (c == 'q')
+            break;
     }
 
     return 0;
