@@ -13,3 +13,17 @@ each procces has its own file descriptor table.
 
 i need to dedicate more time to learn about file descriptors so that i can fully understand meaning behind STDIN_FILENO or 
 TCSAFLUSH. in future i will have to use more of these.
+
+EDIT 1.
+so i have figured out what TCSAFLUSH is, it basically tells operating system when our changes should be
+applied to our terminal settings. there are many types for example, TCSANOW that applies changes immidietly.
+TSCAFLUSH itself, waits for output to be finished, then it throws unread inputs and applys changes.
+basically we need STDIN_FILENO file descriptor to read settings,save it to our settings variable
+and use TSCAFLUSH to specify when those changes are gonna happen.
+
+STDIN_FILENO is file descriptor (0) that is used for reading the keyboard input for example.
+STDOUT_FILENO is file descriptor (1) that is used for sending output.
+STDERR_FILENO is like STDOUT_FILENO output (3) but for error messages.
+
+also i figured out bitwise operators and how they work in C. its basically like logic gates of CPU
+but we can use gates on bits of our ints,floats, ect.
